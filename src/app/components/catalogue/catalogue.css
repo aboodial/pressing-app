@@ -1,0 +1,38 @@
+.catalogue {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.catalogue h2 {
+  color: #1E3A5F;
+  margin-bottom: 16px;
+}
+
+.liste-services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.carte-service {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  background: white;
+}
+
+.carte-service h3 {
+  margin: 0 0 8px;
+  color: #1E3A5F;
+}
+
+.carte-service .prix {
+  font-weight: bold;
+  color: #2c7a4b;
+  margin-top: 8px;
+}
+
+.erreur {
+  color: #c0392b;
+}

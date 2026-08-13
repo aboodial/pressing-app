@@ -1,0 +1,21 @@
+<div class="catalogue">
+  <h2>Nos services</h2>
+
+  @if (loading()) {
+    <p>Chargement du catalogue...</p>
+  } @else if (erreur()) {
+    <p class="erreur">{{ erreur() }}</p>
+  } @else {
+    <div class="liste-services">
+      @for (service of services(); track service.id) {
+        <div class="carte-service">
+          <h3>{{ service.libelle }}</h3>
+          <p>{{ service.description }}</p>
+          <p class="prix">{{ service.prix_unitaire }} FCFA</p>
+        </div>
+      } @empty {
+        <p>Aucun service disponible pour le moment.</p>
+      }
+    </div>
+  }
+</div>
