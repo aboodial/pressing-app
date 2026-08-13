@@ -1,0 +1,23 @@
+<nav class="navbar">
+  <div class="logo">
+    <span>🧺 Pressing LIC</span>
+  </div>
+
+  <div class="liens">
+    <a routerLink="/">Catalogue</a>
+
+    @if (auth.isLoggedIn()) {
+      <a routerLink="/commander">Commander</a>
+      <a routerLink="/mes-commandes">Mes commandes</a>
+    }
+  </div>
+
+  <div class="compte">
+    @if (auth.isLoggedIn()) {
+      <span class="nom-utilisateur">{{ auth.currentUser()?.name }}</span>
+      <button (click)="seDeconnecter()">Déconnexion</button>
+    } @else {
+      <a routerLink="/login" class="btn-connexion">Connexion</a>
+    }
+  </div>
+</nav>
