@@ -1,0 +1,35 @@
+<div class="login-container">
+  <div class="login-card">
+    <h2>Connexion</h2>
+
+    @if (erreur()) {
+      <p class="erreur">{{ erreur() }}</p>
+    }
+
+    <label for="email">Email</label>
+    <input
+      id="email"
+      type="email"
+      [value]="email()"
+      (input)="onEmailChange($event)"
+      placeholder="votre@email.com"
+    />
+
+    <label for="password">Mot de passe</label>
+    <input
+      id="password"
+      type="password"
+      [value]="password()"
+      (input)="onPasswordChange($event)"
+      placeholder="••••••••"
+    />
+
+    <button (click)="seConnecter()" [disabled]="chargement()">
+      @if (chargement()) {
+        Connexion en cours...
+      } @else {
+        Se connecter
+      }
+    </button>
+  </div>
+</div>
