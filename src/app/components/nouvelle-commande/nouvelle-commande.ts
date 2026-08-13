@@ -68,7 +68,7 @@ export class NouvelleCommande {
     this.catalogueService.creerTicket(payload).subscribe({
       next: () => {
         this.envoiEnCours.set(false);
-        this.router.navigate(['/']);
+        this.router.navigate(['/mes-commandes']);
       },
       error: (err) => {
         this.envoiEnCours.set(false);

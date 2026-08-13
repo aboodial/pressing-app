@@ -1,0 +1,122 @@
+.mes-commandes {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.mes-commandes h2 {
+  color: #1E3A5F;
+  margin-bottom: 20px;
+}
+
+.carte-ticket {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.entete-ticket {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.numero {
+  font-weight: bold;
+  font-size: 16px;
+  color: #1E3A5F;
+}
+
+.badge-paye {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+.badge-paye.paye {
+  background: #d4edda;
+  color: #2c7a4b;
+}
+
+.badge-paye.non-paye {
+  background: #f8d7da;
+  color: #c0392b;
+}
+
+/* La frise de statuts */
+.frise {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.etape {
+  flex: 1;
+  text-align: center;
+  position: relative;
+}
+
+.etape:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 55%;
+  width: 90%;
+  height: 2px;
+  background: #ddd;
+  z-index: 0;
+}
+
+.etape.complete:not(:last-child)::after {
+  background: #2c7a4b;
+}
+
+.pastille {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ddd;
+  margin: 0 auto 6px;
+  position: relative;
+  z-index: 1;
+}
+
+.etape.complete .pastille {
+  background: #2c7a4b;
+}
+
+.libelle-etape {
+  font-size: 11px;
+  color: #666;
+}
+
+.etape.complete .libelle-etape {
+  color: #2c7a4b;
+  font-weight: bold;
+}
+
+.detail-lignes {
+  border-top: 1px solid #eee;
+  padding-top: 12px;
+  margin-bottom: 12px;
+}
+
+.ligne {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #666;
+  padding: 4px 0;
+}
+
+.total-ticket {
+  font-weight: bold;
+  color: #1E3A5F;
+  text-align: right;
+}
+
+.erreur {
+  color: #c0392b;
+}

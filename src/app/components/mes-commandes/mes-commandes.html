@@ -1,0 +1,44 @@
+<div class="mes-commandes">
+  <h2>Mes commandes</h2>
+
+  @if (loading()) {
+    <p>Chargement de vos commandes...</p>
+  } @else if (erreur()) {
+    <p class="erreur">{{ erreur() }}</p>
+  } @else if (tickets().length === 0) {
+    <p>Vous n'avez pas encore de commande.</p>
+  } @else {
+    @for (ticket of tickets(); track ticket.id) {
+      <div class="carte-ticket">
+        <div class="entete-ticket">
+          <span class="numero">Ticket #{{ ticket.id }}</span>
+          <span class="badge-paye" [class.paye]="ticket.paye" [class.non-paye]="!ticket.paye">
+            {{ ticket.paye ? 'Payé' : 'Non payé' }}
+          </span>
+        </div>
+
+        <div class="frise">
+          @for (etape of etapesStatut; track etape; let i = $index) {
+            <div class="etape" [class.complete]="i <= indexEtape(ticket.statut)">
+              <div class="pastille"></div>
+              <span class="libelle-etape">{{ libellesStatut[etape] }}</span>
+            </div>
+          }
+        </div>
+
+        <div class="detail-lignes">
+          @for (ligne of ticket.lignes; track ligne.id) {
+            <div class="ligne">
+              <span>{{ ligne.service_libelle }} x{{ ligne.quantite }}</span>
+              <span>{{ ligne.sous_total }} FCFA</span>
+            </div>
+          }
+        </div>
+
+        <div class="total-ticket">
+          Total : {{ ticket.montant_total }} FCFA
+        </div>
+      </div>
+    }
+  }
+</div>
