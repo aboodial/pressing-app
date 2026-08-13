@@ -23,4 +23,14 @@ export class Catalogue {
   getOne(id: number): Observable<ServicePressing> {
     return this.http.get<ServicePressing>(`${API_URL}/services/${id}`);
   }
+
+  creerTicket(services: { service_id: number; quantite: number }[]): Observable<any> {
+    return this.http.post(
+      `${API_URL}/tickets`,
+      { services },
+      {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      },
+    );
+  }
 }

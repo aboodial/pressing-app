@@ -1,0 +1,56 @@
+<div class="nouvelle-commande">
+  <h2>Composer ma commande</h2>
+
+  @if (loading()) {
+    <p>Chargement du catalogue...</p>
+  } @else {
+    <div class="grille">
+      <div class="liste-services">
+        @for (service of services(); track service.id) {
+          <div class="carte-service">
+            <h3>{{ service.libelle }}</h3>
+            <p>{{ service.description }}</p>
+            <p class="prix">{{ service.prix_unitaire }} FCFA</p>
+            <button (click)="ajouterAuPanier(service)">Ajouter</button>
+          </div>
+        }
+      </div>
+
+      <div class="panier">
+        <h3>Mon panier</h3>
+
+        @if (panier().length === 0) {
+          <p class="panier-vide">Votre panier est vide</p>
+        } @else {
+          @for (ligne of panier(); track ligne.service.id) {
+            <div class="ligne-panier">
+              <span>{{ ligne.service.libelle }} x{{ ligne.quantite }}</span>
+              <span>{{ ligne.service.prix_unitaire * ligne.quantite }} FCFA</span>
+              <button class="retirer" (click)="retirerDuPanier(ligne.service.id)">✕</button>
+            </div>
+          }
+
+          <div class="total">
+            Total : {{ total() }} FCFA
+          </div>
+
+          @if (erreur()) {
+            <p class="erreur">{{ erreur() }}</p>
+          }
+
+          <button
+            class="valider"
+            (click)="validerCommande()"
+            [disabled]="envoiEnCours()"
+          >
+            @if (envoiEnCours()) {
+              Envoi en cours...
+            } @else {
+              Valider la commande
+            }
+          </button>
+        }
+      </div>
+    </div>
+  }
+</div>
