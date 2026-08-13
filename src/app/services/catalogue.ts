@@ -40,6 +40,10 @@ const API_URL = 'http://localhost:8000/api';
 export class Catalogue {
   private http = inject(HttpClient);
 
+  private authHeaders() {
+    return { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } };
+  }
+
   getAll(): Observable<ServicePressing[]> {
     return this.http.get<ServicePressing[]>(`${API_URL}/services`);
   }
@@ -49,18 +53,26 @@ export class Catalogue {
   }
 
   creerTicket(services: { service_id: number; quantite: number }[]): Observable<Ticket> {
-    return this.http.post<Ticket>(
-      `${API_URL}/tickets`,
-      { services },
-      {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-      },
-    );
+    return this.http.post<Ticket>(`${API_URL}/tickets`, { services }, this.authHeaders());
   }
 
   getMesTickets(): Observable<Ticket[]> {
-    return this.http.get<Ticket[]>(`${API_URL}/tickets`, {
-      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-    });
+    return this.http.get<Ticket[]>(`${API_URL}/tickets`, this.authHeaders());
+  }
+
+  changerStatut(ticketId: number, statut: string): Observable<Ticket> {
+    return this.http.patch<Ticket>(
+      `${API_URL}/tickets/${ticketId}/statut`,
+      { statut },
+      this.authHeaders(),
+    );
+  }
+
+  enregistrerPaiement(ticketId: number, montant: number): Observable<any> {
+    return this.http.post(
+      `${API_URL}/tickets/${ticketId}/paiement`,
+      { montant },
+      this.authHeaders(),
+    );
   }
 }

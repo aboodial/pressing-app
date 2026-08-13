@@ -1,0 +1,66 @@
+<div class="gestion-tickets">
+  <h2>Gestion des tickets</h2>
+
+  @if (erreur()) {
+    <p class="erreur-globale">{{ erreur() }}</p>
+  }
+
+  @if (loading()) {
+    <p>Chargement des tickets...</p>
+  } @else if (tickets().length === 0) {
+    <p>Aucun ticket pour le moment.</p>
+  } @else {
+    <table class="tableau-tickets">
+      <thead>
+      <tr>
+        <th>Ticket</th>
+        <th>Client</th>
+        <th>Montant</th>
+        <th>Statut</th>
+        <th>Paiement</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+        @for (ticket of tickets(); track ticket.id) {
+          <tr>
+            <td>#{{ ticket.id }}</td>
+            <td>{{ ticket.client.name }}</td>
+            <td>{{ ticket.montant_total }} FCFA</td>
+            <td>
+              <span class="badge-statut" [class]="'statut-' + ticket.statut">
+                {{ libellesStatut[ticket.statut] }}
+              </span>
+            </td>
+            <td>
+              <span class="badge-paye" [class.paye]="ticket.paye" [class.non-paye]="!ticket.paye">
+                {{ ticket.paye ? 'Payé' : 'Non payé' }}
+              </span>
+            </td>
+            <td class="actions">
+              @if (!ticket.paye) {
+                <button
+                  class="btn-paiement"
+                  (click)="enregistrerPaiement(ticket)"
+                  [disabled]="actionEnCours() === ticket.id"
+                >
+                  Encaisser
+                </button>
+              }
+
+              @if (libelleProchainStatut(ticket.statut); as prochain) {
+                <button
+                  class="btn-statut"
+                  (click)="passerAuStatutSuivant(ticket)"
+                  [disabled]="actionEnCours() === ticket.id || (ticket.statut === 'en_traitement' && !ticket.paye && prochain === 'Récupéré')"
+                >
+                  → {{ prochain }}
+                </button>
+              }
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>
