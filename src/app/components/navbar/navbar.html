@@ -7,8 +7,14 @@
     <a routerLink="/">Catalogue</a>
 
     @if (auth.isLoggedIn()) {
-      <a routerLink="/commander">Commander</a>
-      <a routerLink="/mes-commandes">Mes commandes</a>
+      @if (auth.currentUser()?.role === 'client') {
+        <a routerLink="/commander">Commander</a>
+        <a routerLink="/mes-commandes">Mes commandes</a>
+      }
+
+      @if (auth.currentUser()?.role === 'gestionnaire') {
+        <a routerLink="/gestion">Gestion des tickets</a>
+      }
     }
   </div>
 
