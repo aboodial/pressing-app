@@ -34,6 +34,23 @@ export interface Ticket {
   updated_at: string;
 }
 
+export interface ResumeStats {
+  tickets_aujourdhui: number;
+  tickets_recuperes_aujourdhui: number;
+  recette_aujourdhui: number;
+}
+
+export interface TicketsParMois {
+  mois: string;
+  total: number;
+}
+
+export interface CaParService {
+  libelle: string;
+  mois: string;
+  chiffre_affaires: string;
+}
+
 const API_URL = 'http://localhost:8000/api';
 
 @Service()
@@ -72,6 +89,24 @@ export class Catalogue {
     return this.http.post(
       `${API_URL}/tickets/${ticketId}/paiement`,
       { montant },
+      this.authHeaders(),
+    );
+  }
+
+  getResumeStats(): Observable<ResumeStats> {
+    return this.http.get<ResumeStats>(`${API_URL}/statistiques/resume`, this.authHeaders());
+  }
+
+  getTicketsParMois(): Observable<TicketsParMois[]> {
+    return this.http.get<TicketsParMois[]>(
+      `${API_URL}/statistiques/tickets-par-mois`,
+      this.authHeaders(),
+    );
+  }
+
+  getCaParService(): Observable<CaParService[]> {
+    return this.http.get<CaParService[]>(
+      `${API_URL}/statistiques/ca-par-service`,
       this.authHeaders(),
     );
   }

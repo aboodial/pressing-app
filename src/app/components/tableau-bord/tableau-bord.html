@@ -1,0 +1,34 @@
+<div class="tableau-bord">
+  <h2>Tableau de bord</h2>
+
+  @if (loading()) {
+    <p>Chargement des statistiques...</p>
+  } @else if (resume(); as stats) {
+    <div class="cartes-resume">
+      <div class="carte-stat">
+        <p class="libelle-stat">Tickets aujourd'hui</p>
+        <p class="valeur-stat">{{ stats.tickets_aujourdhui }}</p>
+      </div>
+      <div class="carte-stat">
+        <p class="libelle-stat">Récupérés aujourd'hui</p>
+        <p class="valeur-stat">{{ stats.tickets_recuperes_aujourdhui }}</p>
+      </div>
+      <div class="carte-stat">
+        <p class="libelle-stat">Recette du jour</p>
+        <p class="valeur-stat">{{ stats.recette_aujourdhui }} FCFA</p>
+      </div>
+    </div>
+  }
+
+  <div class="graphiques">
+    <div class="bloc-graphique">
+      <h3>Tickets par mois</h3>
+      <canvas #graphiqueTickets></canvas>
+    </div>
+
+    <div class="bloc-graphique">
+      <h3>Chiffre d'affaires par service</h3>
+      <canvas #graphiqueServices></canvas>
+    </div>
+  </div>
+</div>

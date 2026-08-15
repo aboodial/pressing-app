@@ -1,0 +1,64 @@
+.tableau-bord {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.tableau-bord h2 {
+  color: #1E3A5F;
+  margin-bottom: 20px;
+}
+
+.cartes-resume {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.carte-stat {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+
+.libelle-stat {
+  font-size: 13px;
+  color: #666;
+  margin: 0 0 8px;
+}
+
+.valeur-stat {
+  font-size: 28px;
+  font-weight: bold;
+  color: #1E3A5F;
+  margin: 0;
+}
+
+.graphiques {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.bloc-graphique {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.bloc-graphique h3 {
+  color: #1E3A5F;
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 16px;
+}
+
+@media (max-width: 700px) {
+  .graphiques {
+    grid-template-columns: 1fr;
+  }
+}
