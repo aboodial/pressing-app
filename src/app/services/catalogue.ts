@@ -139,4 +139,11 @@ export class Catalogue {
       this.authHeaders(),
     );
   }
+
+  telechargerRecu(ticketId: number): Observable<Blob> {
+    return this.http.get(`${API_URL}/tickets/${ticketId}/recu`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      responseType: 'blob',
+    });
+  }
 }

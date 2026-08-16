@@ -38,6 +38,20 @@
         <div class="total-ticket">
           Total : {{ ticket.montant_total }} FCFA
         </div>
+
+        @if (indexEtape(ticket.statut) >= 2) {
+          <button
+            class="btn-telecharger"
+            (click)="telechargerRecu(ticket)"
+            [disabled]="telechargementEnCours() === ticket.id"
+          >
+            @if (telechargementEnCours() === ticket.id) {
+              Téléchargement...
+            } @else {
+              📄 Télécharger le reçu
+            }
+          </button>
+        }
       </div>
     }
   }

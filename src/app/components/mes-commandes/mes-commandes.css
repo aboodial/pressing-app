@@ -120,3 +120,20 @@
 .erreur {
   color: #c0392b;
 }
+
+.btn-telecharger {
+  width: 100%;
+  margin-top: 14px;
+  padding: 10px;
+  background: #1E3A5F;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-telecharger:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
