@@ -5,6 +5,7 @@ import { NouvelleCommande } from './components/nouvelle-commande/nouvelle-comman
 import { MesCommandes } from './components/mes-commandes/mes-commandes';
 import { GestionTickets } from './components/gestion-tickets/gestion-tickets';
 import { TableauBord } from './components/tableau-bord/tableau-bord';
+import { GestionServices } from './components/gestion-services/gestion-services';
 
 export const routes: Routes = [
   { path: '', component: Catalogue },
@@ -13,4 +14,5 @@ export const routes: Routes = [
   { path: 'mes-commandes', component: MesCommandes },
   { path: 'gestion', component: GestionTickets },
   { path: 'tableau-bord', component: TableauBord },
+  { path: 'gestion-services', component: GestionServices },
 ];

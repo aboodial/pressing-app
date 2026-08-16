@@ -65,8 +65,37 @@ export class Catalogue {
     return this.http.get<ServicePressing[]>(`${API_URL}/services`);
   }
 
+  getAllPourGestion(): Observable<ServicePressing[]> {
+    return this.http.get<ServicePressing[]>(`${API_URL}/services-gestion`, this.authHeaders());
+  }
+
   getOne(id: number): Observable<ServicePressing> {
     return this.http.get<ServicePressing>(`${API_URL}/services/${id}`);
+  }
+
+  creerService(service: {
+    libelle: string;
+    prix_unitaire: number;
+    description: string;
+    disponible: boolean;
+  }): Observable<ServicePressing> {
+    return this.http.post<ServicePressing>(`${API_URL}/services`, service, this.authHeaders());
+  }
+
+  modifierService(
+    id: number,
+    service: Partial<{
+      libelle: string;
+      prix_unitaire: number;
+      description: string;
+      disponible: boolean;
+    }>,
+  ): Observable<ServicePressing> {
+    return this.http.put<ServicePressing>(`${API_URL}/services/${id}`, service, this.authHeaders());
+  }
+
+  supprimerService(id: number): Observable<any> {
+    return this.http.delete(`${API_URL}/services/${id}`, this.authHeaders());
   }
 
   creerTicket(services: { service_id: number; quantite: number }[]): Observable<Ticket> {

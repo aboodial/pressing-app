@@ -1,0 +1,84 @@
+<div class="gestion-services">
+  <div class="entete">
+    <h2>Gestion des services</h2>
+    <button class="btn-ajouter" (click)="ouvrirFormulaireCreation()">+ Nouveau service</button>
+  </div>
+
+  @if (erreur()) {
+    <p class="erreur-globale">{{ erreur() }}</p>
+  }
+
+  @if (afficherFormulaire()) {
+    <div class="formulaire">
+      <h3>{{ modeEdition() ? 'Modifier le service' : 'Nouveau service' }}</h3>
+
+      <label for="libelle">Libellé</label>
+      <input
+        id="libelle"
+        type="text"
+        [value]="libelle()"
+        (input)="onLibelleChange($event)"
+        placeholder="Ex: Lavage"
+      />
+
+      <label for="prix">Prix unitaire (FCFA)</label>
+      <input
+        id="prix"
+        type="number"
+        [value]="prixUnitaire()"
+        (input)="onPrixChange($event)"
+        placeholder="2000"
+      />
+
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        [value]="description()"
+        (input)="onDescriptionChange($event)"
+        placeholder="Description du service"
+      ></textarea>
+
+      <div class="actions-formulaire">
+        <button class="btn-annuler" (click)="fermerFormulaire()">Annuler</button>
+        <button class="btn-enregistrer" (click)="enregistrer()">Enregistrer</button>
+      </div>
+    </div>
+  }
+
+  @if (loading()) {
+    <p>Chargement des services...</p>
+  } @else {
+    <table class="tableau-services">
+      <thead>
+      <tr>
+        <th>Libellé</th>
+        <th>Description</th>
+        <th>Prix</th>
+        <th>Statut</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+        @for (service of services(); track service.id) {
+          <tr>
+            <td>{{ service.libelle }}</td>
+            <td>{{ service.description }}</td>
+            <td>{{ service.prix_unitaire }} FCFA</td>
+            <td>
+              <span class="badge" [class.actif]="service.disponible" [class.inactif]="!service.disponible">
+                {{ service.disponible ? 'Actif' : 'Inactif' }}
+              </span>
+            </td>
+            <td class="actions">
+              <button class="btn-modifier" (click)="ouvrirFormulaireEdition(service)">Modifier</button>
+              <button class="btn-basculer" (click)="basculerDisponibilite(service)">
+                {{ service.disponible ? 'Désactiver' : 'Activer' }}
+              </button>
+              <button class="btn-supprimer" (click)="supprimer(service)">Supprimer</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>
