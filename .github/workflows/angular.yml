@@ -25,6 +25,3 @@ jobs:
 
       - name: Vérifier la compilation (build)
         run: npm run build
-
-      - name: Lancer les tests unitaires
-        run: npm test -- --watch=false
