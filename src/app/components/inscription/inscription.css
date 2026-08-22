@@ -1,4 +1,4 @@
-.login-container {
+.inscription-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,7 +6,7 @@
   padding: 20px;
 }
 
-.login-card {
+.inscription-card {
   background: white;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -15,13 +15,13 @@
   max-width: 320px;
 }
 
-.login-card h2 {
+.inscription-card h2 {
   color: #1E3A5F;
   margin-top: 0;
   margin-bottom: 16px;
 }
 
-.login-card label {
+.inscription-card label {
   display: block;
   font-size: 13px;
   color: #666;
@@ -29,7 +29,7 @@
   margin-top: 12px;
 }
 
-.login-card input {
+.inscription-card input {
   width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
@@ -37,7 +37,7 @@
   box-sizing: border-box;
 }
 
-.login-card button {
+.inscription-card button {
   width: 100%;
   margin-top: 20px;
   padding: 10px;
@@ -48,7 +48,7 @@
   cursor: pointer;
 }
 
-.login-card button:disabled {
+.inscription-card button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
@@ -58,14 +58,15 @@
   font-size: 14px;
   margin-bottom: 12px;
 }
-.lien-inscription {
+
+.lien-connexion {
   text-align: center;
   font-size: 13px;
   margin-top: 16px;
   color: #666;
 }
 
-.lien-inscription a {
+.lien-connexion a {
   color: #1E3A5F;
   font-weight: 500;
 }

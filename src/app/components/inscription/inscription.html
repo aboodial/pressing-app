@@ -1,0 +1,57 @@
+<div class="inscription-container">
+  <div class="inscription-card">
+    <h2>Créer un compte</h2>
+
+    @if (erreur()) {
+      <p class="erreur">{{ erreur() }}</p>
+    }
+
+    <label for="name">Nom complet</label>
+    <input
+      id="name"
+      type="text"
+      [value]="name()"
+      (input)="onNameChange($event)"
+      placeholder="Votre nom"
+    />
+
+    <label for="email">Email</label>
+    <input
+      id="email"
+      type="email"
+      [value]="email()"
+      (input)="onEmailChange($event)"
+      placeholder="votre@email.com"
+    />
+
+    <label for="password">Mot de passe</label>
+    <input
+      id="password"
+      type="password"
+      [value]="password()"
+      (input)="onPasswordChange($event)"
+      placeholder="••••••••"
+    />
+
+    <label for="passwordConfirmation">Confirmer le mot de passe</label>
+    <input
+      id="passwordConfirmation"
+      type="password"
+      [value]="passwordConfirmation()"
+      (input)="onPasswordConfirmationChange($event)"
+      placeholder="••••••••"
+    />
+
+    <button (click)="sInscrire()" [disabled]="chargement()">
+      @if (chargement()) {
+        Inscription en cours...
+      } @else {
+        S'inscrire
+      }
+    </button>
+
+    <p class="lien-connexion">
+      Déjà un compte ? <a routerLink="/login">Se connecter</a>
+    </p>
+  </div>
+</div>
